@@ -26,7 +26,7 @@ namespace ChatBot
 
         public static string userName { get; set; }
 
-
+        ///Горячая клавиша enter
         private void FormLogin_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -36,7 +36,7 @@ namespace ChatBot
             }
         }
 
-
+        ///обработчик события - войти
         private void buttonLogin_Click(object sender, EventArgs e)
         {
 

@@ -55,20 +55,59 @@ namespace ChatBot
            
 
         //....}
+
+        ///вывод запросов пользователя и ответов бота 
         public string BotSay(string bot)
         {
-            return "[" + DateTime.Now.ToString("HH:mm") + "] " + "Бот" + ": " + bot + "\r" + "\n";
+            return "[" + DateTime.Now.ToString("HH:mm") + "] " + "Bot Alex" + ": " + bot + "\r" + "\n";
         }
 
         public string UserQuest(string quest)
         {
-            return "[" + DateTime.Now.ToString("HH:mm") + "] " + FormLogin.userName + ": " + quest /*textBox_Question.Text*/ + "\r" + "\n";
+            return "[" + DateTime.Now.ToString("HH:mm") + "] " + FormLogin.userName + ": " + quest  + "\r" + "\n";
+        }
+
+       
+
+  
+        string userName = FormLogin.userName;
+
+        Random rand = new Random();
+        ///привет от бота
+        public string SetHelloBot()
+        {
+           // Random rand = new Random();
+            string[] mas = { "Привет", "Дароу","Хай", "Рад видеть","Nice to meet you"};
+            int mas1 = rand.Next(mas.Length);
+
+            return mas[mas1] + " " + userName;
+        }
+        ///ответ на вопрос - как дела
+        public string SetHowBot()
+        {
+            //Random rand = new Random();
+            string[] mas = { "OK","Прекрасно","Отлично" };
+            int mas1 = rand.Next(mas.Length);
+
+            return mas[mas1];
+        }
+        ///запрос время
+        public string TimeBot()
+        {
+            return DateTime.Now.ToString("T");
+        }
+        ///запрос дата
+        public string DateBot()
+        {
+            return DateTime.Now.ToString("D");
         }
 
 
+
+        ///запрос сложение
         public string BotSum(string quest)
         {
-            
+
             quest = quest.Replace(" ", "");
             quest = quest.Substring(quest.LastIndexOf('ж') + 2); /// Как тут можно сделать по другому что бы не отслеживать ласт символ
             string[] words = quest.Split(new char[] { 'и' }, StringSplitOptions.RemoveEmptyEntries);
@@ -77,11 +116,11 @@ namespace ChatBot
             return (a + b).ToString();
 
         }
-
+        /// запрос вычитание
         public string BotSub(string quest)
         {
             quest = quest.Replace(" ", "");
-            quest = quest.Substring(quest.LastIndexOf('т') + 2); /// Как тут можно сделать по другому что бы не отслеживать ласт символ
+            quest = quest.Substring(quest.LastIndexOf('т') + 2);
             string[] words = quest.Split(new char[] { 'и' }, StringSplitOptions.RemoveEmptyEntries);
             int a = Convert.ToInt32(words[0]);
             int b = Convert.ToInt32(words[1]);
@@ -91,35 +130,9 @@ namespace ChatBot
 
 
 
-  
-        string userName = FormLogin.userName;
-     
-        public string SetHelloBot()
-        {
-            Random rand = new Random();
-            string[] mas = { "Привет", "Дароу" };
-            int mas1 = rand.Next(mas.Length);
-
-            return mas[mas1] + " " + userName;
-        }
-
-        public string TimeBot()
-        {
-            return DateTime.Now.ToString("T");
-        }
-
-        public string DateBot()
-        {
-            return DateTime.Now.ToString("D");
-        }
-
-      
 
 
 
 
-
-
-       
     }
 }
