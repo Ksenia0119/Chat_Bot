@@ -51,6 +51,7 @@ namespace ChatBot
             this.textBox_Answer.Size = new System.Drawing.Size(581, 228);
             this.textBox_Answer.TabIndex = 0;
             this.textBox_Answer.TabStop = false;
+           
             // 
             // textBox_Question
             // 
@@ -99,7 +100,7 @@ namespace ChatBot
             // ToolStripMenuItem_author
             // 
             this.ToolStripMenuItem_author.Name = "ToolStripMenuItem_author";
-            this.ToolStripMenuItem_author.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItem_author.Size = new System.Drawing.Size(164, 26);
             this.ToolStripMenuItem_author.Text = "Об авторе";
             this.ToolStripMenuItem_author.Click += new System.EventHandler(this.обАвтореToolStripMenuItem_Click);
             // 

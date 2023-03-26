@@ -16,7 +16,7 @@ namespace ChatBot
     public partial class FormLogin : Form
     {
 
-        
+
         public FormLogin()
         {
             InitializeComponent();
@@ -31,21 +31,29 @@ namespace ChatBot
         {
             if (e.KeyCode == Keys.Enter)
             {
-               
-               buttonLogin.PerformClick();
+
+                buttonLogin.PerformClick();
             }
         }
 
         ///обработчик события - войти
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+            if (textBoxLogin.Text == "")
+            {
+                //MessageBox.Show("Вы забыли ввести имя");
+                labelError.Text = "Вы забыли ввести имя";
+            }
+            else
 
-            userName = textBoxLogin.Text;
-            Form FormBot = new FormBot();
-            Close();
-            FormBot.Show();
+            {
+                userName = textBoxLogin.Text;
+                Form FormBot = new FormBot();
+                Close();
+                FormBot.Show();
+            }
         }
 
-       
+
     }
 }

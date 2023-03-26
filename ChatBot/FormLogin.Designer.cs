@@ -31,12 +31,13 @@
             this.buttonLogin = new System.Windows.Forms.Button();
             this.textBoxLogin = new System.Windows.Forms.TextBox();
             this.label_hi = new System.Windows.Forms.Label();
+            this.labelError = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonLogin
             // 
             this.buttonLogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonLogin.Location = new System.Drawing.Point(118, 184);
+            this.buttonLogin.Location = new System.Drawing.Point(123, 180);
             this.buttonLogin.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(168, 28);
@@ -47,7 +48,7 @@
             // 
             // textBoxLogin
             // 
-            this.textBoxLogin.Location = new System.Drawing.Point(118, 124);
+            this.textBoxLogin.Location = new System.Drawing.Point(123, 120);
             this.textBoxLogin.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(168, 22);
@@ -58,11 +59,22 @@
             this.label_hi.AutoSize = true;
             this.label_hi.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label_hi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_hi.Location = new System.Drawing.Point(78, 60);
+            this.label_hi.Location = new System.Drawing.Point(83, 56);
             this.label_hi.Name = "label_hi";
             this.label_hi.Size = new System.Drawing.Size(273, 20);
             this.label_hi.TabIndex = 3;
             this.label_hi.Text = "Пожалуйста,введите ваше имя";
+            // 
+            // labelError
+            // 
+            this.labelError.AutoSize = true;
+            this.labelError.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.labelError.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelError.ForeColor = System.Drawing.Color.Firebrick;
+            this.labelError.Location = new System.Drawing.Point(12, 226);
+            this.labelError.Name = "labelError";
+            this.labelError.Size = new System.Drawing.Size(0, 20);
+            this.labelError.TabIndex = 4;
             // 
             // FormLogin
             // 
@@ -71,6 +83,7 @@
             this.BackgroundImage = global::ChatBot.Properties.Resources.image_login;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(449, 255);
+            this.Controls.Add(this.labelError);
             this.Controls.Add(this.label_hi);
             this.Controls.Add(this.textBoxLogin);
             this.Controls.Add(this.buttonLogin);
@@ -87,5 +100,6 @@
         private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.TextBox textBoxLogin;
         private System.Windows.Forms.Label label_hi;
+        private System.Windows.Forms.Label labelError;
     }
 }
