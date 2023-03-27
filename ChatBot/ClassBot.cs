@@ -62,7 +62,6 @@ namespace ChatBot
 
         }
 
-
         ///получение ip 
         /// https://upread.ru/art.php?id=84
         public string SiteIP()
