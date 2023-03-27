@@ -22,6 +22,7 @@ namespace ChatBot
         public static Regex regexSum = new Regex(@"Сложи", RegexOptions.IgnoreCase);
         public static Regex regexSub = new Regex(@"Вычти", RegexOptions.IgnoreCase);
         public static Regex regexIP = new Regex(@"ip$|айпи$", RegexOptions.IgnoreCase);
+        public static Regex regexInstuction = new Regex("что ты умеешь$|инструкция", RegexOptions.IgnoreCase);
 
         string url = "https://hidemy.name/ru/what-is-my-ip/";
 
@@ -122,7 +123,11 @@ namespace ChatBot
                 return bot.UserQuest(b) + "\r"
                 + bot.BotSay(bot.SiteIP());
             }
-
+            if (regexInstuction.IsMatch(b))
+            {
+                return bot.UserQuest(b) + "\r"
+                               + bot.BotSay(bot.BotInstruction());
+            }
             else
             {
                 return bot.UserQuest(b) + "\r" + "[" + DateTime.Now.ToString("HH:mm") + "] " + "Bot Alex" + ": "
@@ -130,8 +135,19 @@ namespace ChatBot
             }
         }
 
+        ///инструкция
+        public string BotInstruction()
+        {
+            return "\r" + "\n" + "Я умею выполнять следующие действия: " + "\r" + "\n"
+            + "Отвечать на приветствие разными вариантами " + "\r" + "\n"
+            + "Отвечать на вопрос 'Как дела?'" + "\r" + "\n"
+            + "Показывать дату и время " + "\r" + "\n"
+            + "Складывать числа 'a и b' = c" + "\r" + "\n"
+            + "Вычитать числа 'a из b' = c" + "\r" + "\n"
+            + "Отследить ваш ip" + "\r" + "\n"
+            + "Приятного общения)))";
+        }
 
-      
         ///запрос время
         public string TimeBot()
         {

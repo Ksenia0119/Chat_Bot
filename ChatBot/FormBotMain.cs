@@ -60,7 +60,7 @@ namespace ChatBot
         ///сохранение чата в фаил
         private void сохранитьИсториюЧатаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //string path = "ChatBot\\content.txt"; // путь к файлу
+            //string path = "..ChatBot\\content.txt"; // путь к файлу
             // string text = textBox_Answer.Text; // текст из TextEdit
             //File.WriteAllText(path, text); // сохранение текста в файл
 
@@ -69,9 +69,10 @@ namespace ChatBot
                 saveFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt"; // Фильтр для типа файлов
                 if (saveFileDialog.ShowDialog() == DialogResult.OK) // Если пользователь выбрал файл 
                 {
-                    
-                    string text = textBox_Answer.Text; 
-                    File.WriteAllText(saveFileDialog.FileName, text); // сохранение текста в файл по выбранному пути
+                    string date = DateTime.Now.ToString();
+                    string text = textBox_Answer.Text;
+                    string content = $"{date}\n{text}";
+                    File.WriteAllText(saveFileDialog.FileName, content); // сохранение текста в файл по выбранному пути
                 }
             }
         }
@@ -94,6 +95,12 @@ namespace ChatBot
         private void очиститьЧатToolStripMenuItem_Click(object sender, EventArgs e)
         {
             textBox_Answer.Text = string.Empty;
+        }
+
+        ///инструкция
+        private void инструкцияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(bot.BotInstruction());
         }
     }
 }

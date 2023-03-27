@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.buttonLogin = new System.Windows.Forms.Button();
             this.textBoxLogin = new System.Windows.Forms.TextBox();
             this.label_hi = new System.Windows.Forms.Label();
@@ -37,7 +38,7 @@
             // buttonLogin
             // 
             this.buttonLogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonLogin.Location = new System.Drawing.Point(123, 180);
+            this.buttonLogin.Location = new System.Drawing.Point(117, 157);
             this.buttonLogin.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(168, 28);
@@ -48,7 +49,7 @@
             // 
             // textBoxLogin
             // 
-            this.textBoxLogin.Location = new System.Drawing.Point(123, 120);
+            this.textBoxLogin.Location = new System.Drawing.Point(117, 101);
             this.textBoxLogin.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(168, 22);
@@ -59,7 +60,7 @@
             this.label_hi.AutoSize = true;
             this.label_hi.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label_hi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_hi.Location = new System.Drawing.Point(83, 56);
+            this.label_hi.Location = new System.Drawing.Point(71, 65);
             this.label_hi.Name = "label_hi";
             this.label_hi.Size = new System.Drawing.Size(273, 20);
             this.label_hi.TabIndex = 3;
@@ -82,11 +83,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ChatBot.Properties.Resources.image_login;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(455, 253);
+            this.ClientSize = new System.Drawing.Size(417, 253);
             this.Controls.Add(this.labelError);
             this.Controls.Add(this.label_hi);
             this.Controls.Add(this.textBoxLogin);
             this.Controls.Add(this.buttonLogin);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormLogin";
             this.Text = "Авторизация";
