@@ -14,7 +14,7 @@ namespace ChatBot
     public class Bot
     {
 
-        ///регулярные выражения
+        ///регулярные выражения..
         public static Regex regexHello = new Regex(@"Ха*й|приве*т|здарова", RegexOptions.IgnoreCase);
         public static Regex regexTime = new Regex(@"время$|час$", RegexOptions.IgnoreCase);
         public static Regex regexDate = new Regex(@"число$|дата$", RegexOptions.IgnoreCase);
