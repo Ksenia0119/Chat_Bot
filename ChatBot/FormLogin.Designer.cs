@@ -82,7 +82,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ChatBot.Properties.Resources.image_login;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(449, 255);
+            this.ClientSize = new System.Drawing.Size(455, 253);
             this.Controls.Add(this.labelError);
             this.Controls.Add(this.label_hi);
             this.Controls.Add(this.textBoxLogin);

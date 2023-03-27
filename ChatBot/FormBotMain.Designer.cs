@@ -37,6 +37,10 @@ namespace ChatBot
             this.menuStrip_main = new System.Windows.Forms.MenuStrip();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_author = new System.Windows.Forms.ToolStripMenuItem();
+            this.инструментыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьИсториюЧатаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьЧатИзФайлаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.очиститьЧатToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_main.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +55,6 @@ namespace ChatBot
             this.textBox_Answer.Size = new System.Drawing.Size(581, 228);
             this.textBox_Answer.TabIndex = 0;
             this.textBox_Answer.TabStop = false;
-           
             // 
             // textBox_Question
             // 
@@ -82,6 +85,7 @@ namespace ChatBot
             // 
             this.menuStrip_main.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip_main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.инструментыToolStripMenuItem,
             this.справкаToolStripMenuItem});
             this.menuStrip_main.Location = new System.Drawing.Point(0, 0);
             this.menuStrip_main.Name = "menuStrip_main";
@@ -100,9 +104,40 @@ namespace ChatBot
             // ToolStripMenuItem_author
             // 
             this.ToolStripMenuItem_author.Name = "ToolStripMenuItem_author";
-            this.ToolStripMenuItem_author.Size = new System.Drawing.Size(164, 26);
+            this.ToolStripMenuItem_author.Size = new System.Drawing.Size(224, 26);
             this.ToolStripMenuItem_author.Text = "Об авторе";
             this.ToolStripMenuItem_author.Click += new System.EventHandler(this.обАвтореToolStripMenuItem_Click);
+            // 
+            // инструментыToolStripMenuItem
+            // 
+            this.инструментыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сохранитьИсториюЧатаToolStripMenuItem,
+            this.загрузитьЧатИзФайлаToolStripMenuItem,
+            this.очиститьЧатToolStripMenuItem});
+            this.инструментыToolStripMenuItem.Name = "инструментыToolStripMenuItem";
+            this.инструментыToolStripMenuItem.Size = new System.Drawing.Size(117, 24);
+            this.инструментыToolStripMenuItem.Text = "Инструменты";
+            // 
+            // сохранитьИсториюЧатаToolStripMenuItem
+            // 
+            this.сохранитьИсториюЧатаToolStripMenuItem.Name = "сохранитьИсториюЧатаToolStripMenuItem";
+            this.сохранитьИсториюЧатаToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
+            this.сохранитьИсториюЧатаToolStripMenuItem.Text = "Сохранить историю чата";
+            this.сохранитьИсториюЧатаToolStripMenuItem.Click += new System.EventHandler(this.сохранитьИсториюЧатаToolStripMenuItem_Click);
+            // 
+            // загрузитьЧатИзФайлаToolStripMenuItem
+            // 
+            this.загрузитьЧатИзФайлаToolStripMenuItem.Name = "загрузитьЧатИзФайлаToolStripMenuItem";
+            this.загрузитьЧатИзФайлаToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
+            this.загрузитьЧатИзФайлаToolStripMenuItem.Text = "Загрузить чат из файла";
+            this.загрузитьЧатИзФайлаToolStripMenuItem.Click += new System.EventHandler(this.загрузитьЧатИзФайлаToolStripMenuItem_Click);
+            // 
+            // очиститьЧатToolStripMenuItem
+            // 
+            this.очиститьЧатToolStripMenuItem.Name = "очиститьЧатToolStripMenuItem";
+            this.очиститьЧатToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
+            this.очиститьЧатToolStripMenuItem.Text = "Очистить чат";
+            this.очиститьЧатToolStripMenuItem.Click += new System.EventHandler(this.очиститьЧатToolStripMenuItem_Click);
             // 
             // FormBot
             // 
@@ -133,6 +168,10 @@ namespace ChatBot
         private System.Windows.Forms.MenuStrip menuStrip_main;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_author;
+        private System.Windows.Forms.ToolStripMenuItem инструментыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьИсториюЧатаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузитьЧатИзФайлаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem очиститьЧатToolStripMenuItem;
     }
 }
 

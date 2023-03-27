@@ -12,6 +12,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ChatBot
 {
@@ -39,8 +42,13 @@ namespace ChatBot
         ///отправить запрос
         private void button_Send_Click(object sender, EventArgs e)
         {
-            bot.BotCheckReg(textBox_Question.Text);
+            //bot.BotCheckReg(textBox_Question.Text);
             textBox_Answer.Text += bot.Answer(textBox_Question.Text, bot);
+
+            //автоскролинг
+            textBox_Answer.SelectionStart = textBox_Answer.Text.Length;
+            textBox_Answer.ScrollToCaret();
+
             textBox_Question.Clear();
         }
 
@@ -48,6 +56,44 @@ namespace ChatBot
         private void обАвтореToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("@author Maltseva K.V.");
+        }
+        ///сохранение чата в фаил
+        private void сохранитьИсториюЧатаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //string path = "ChatBot\\content.txt"; // путь к файлу
+            // string text = textBox_Answer.Text; // текст из TextEdit
+            //File.WriteAllText(path, text); // сохранение текста в файл
+
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt"; // Фильтр для типа файлов
+                if (saveFileDialog.ShowDialog() == DialogResult.OK) // Если пользователь выбрал файл 
+                {
+                    
+                    string text = textBox_Answer.Text; 
+                    File.WriteAllText(saveFileDialog.FileName, text); // сохранение текста в файл по выбранному пути
+                }
+            }
+        }
+        ///загрузка чата из фаила
+        private void загрузитьЧатИзФайлаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            {
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"; // Фильтр для типа файлов
+                    if (openFileDialog.ShowDialog() == DialogResult.OK) // Если пользователь выбрал файл 
+                    {
+                        string text = File.ReadAllText(openFileDialog.FileName); // чтение текста из выбранного файла
+                        textBox_Answer.Text = text; // загрузка текста в TextEdit
+                    }
+                }
+            }
+        }
+        ///очистить чат
+        private void очиститьЧатToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox_Answer.Text = string.Empty;
         }
     }
 }

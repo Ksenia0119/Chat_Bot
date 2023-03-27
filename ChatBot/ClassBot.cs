@@ -24,6 +24,8 @@ namespace ChatBot
         public static Regex regexIP = new Regex(@"ip$|айпи$", RegexOptions.IgnoreCase);
 
         string url = "https://hidemy.name/ru/what-is-my-ip/";
+
+
         string userName = FormLogin.userName;
 
         ///вывод запросов пользователя и ответов бота 
@@ -36,7 +38,9 @@ namespace ChatBot
         {
             return "[" + DateTime.Now.ToString("HH:mm") + "] " + FormLogin.userName + ": " + quest + "\r" + "\n";
         }
+
         Random rand = new Random();
+
         ///привет от бота
         public string SetHelloBot()
         {
@@ -54,7 +58,12 @@ namespace ChatBot
             int mas1 = rand.Next(mas.Length);
 
             return mas[mas1];
+
+
         }
+
+
+        ///получение ip 
         /// https://upread.ru/art.php?id=84
         public string SiteIP()
         {
@@ -73,15 +82,9 @@ namespace ChatBot
             }
         }
 
-        public void BotCheckReg(string a)
-        {
-            if (regexHello.IsMatch(a))
-            {
-                Answer(a, this);
-            }
-        }
 
 
+        ///проверка запросов для получения ответа
         public string Answer(string b, Bot bot)
         {
             if (regexHello.IsMatch(b))
@@ -124,7 +127,7 @@ namespace ChatBot
             else
             {
                 return bot.UserQuest(b) + "\r" + "[" + DateTime.Now.ToString("HH:mm") + "] " + "Bot Alex" + ": "
-                    + "Я вас не понимаю :(" + "\r" + "\n";
+                    + "К сожалению, я не понимаю, что вы имеете ввиду(((" + "\r" + "\n";
             }
         }
 
@@ -147,7 +150,7 @@ namespace ChatBot
         {
 
             quest = quest.Replace(" ", "");
-            quest = quest.Substring(quest.LastIndexOf('ж') + 2); /// Как тут можно сделать по другому что бы не отслеживать ласт символ
+            quest = quest.Substring(quest.LastIndexOf('ж') + 2); 
             string[] words = quest.Split(new char[] { 'и' }, StringSplitOptions.RemoveEmptyEntries);
             int a = Convert.ToInt32(words[0]);
             int b = Convert.ToInt32(words[1]);
@@ -211,3 +214,11 @@ namespace ChatBot
 
 
 //....}
+
+////public void BotCheckReg(string a)
+////{
+////    if (regexHello.IsMatch(a))
+////    {
+////        Answer(a, this);
+////    }
+////}

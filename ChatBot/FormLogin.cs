@@ -41,7 +41,7 @@ namespace ChatBot
         {
             if (textBoxLogin.Text == "")
             {
-                //MessageBox.Show("Вы забыли ввести имя");
+                
                 labelError.Text = "Вы забыли ввести имя";
             }
             else
