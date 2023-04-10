@@ -16,7 +16,7 @@ namespace ChatBot
 {
     public class Bot
     {
-        List<string> ChatBotHistory = new List<string>();
+        public List<string> ChatBotHistory = new List<string>();
        //
         ///регулярные выражения..
         public static Regex regexHello = new Regex(@"Ха*й|приве*т|здарова", RegexOptions.IgnoreCase);
@@ -34,10 +34,10 @@ namespace ChatBot
         string userName = FormLogin.userName;
 
         /// Метод добавления строк в список
-        public void AddHistory(string a)
-        {
-            ChatBotHistory.Add(a);
-        }
+        //public void AddHistory(string ans)
+        //{
+        //    ChatBotHistory.Add(ans);
+        //}
         /// Метод вывода строк из списка
         public string Watch (string a)
         {
@@ -214,38 +214,38 @@ namespace ChatBot
             return (a - b).ToString();
 
         }
-        public void LoadHistory(string a)
-        {
-            {
-                using (OpenFileDialog openFileDialog = new OpenFileDialog())
-                {
-                    openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"; // Фильтр для типа файлов
-                    if (openFileDialog.ShowDialog() == DialogResult.OK) // Если пользователь выбрал файл 
-                    {
-                        string text = File.ReadAllText(openFileDialog.FileName); // чтение текста из выбранного файла
-                        a = text; // загрузка текста в TextEdit
-                    }
-                }
-            }
-        }
+        //public void LoadHistory(string a)
+        //{
+        //    {
+        //        using (OpenFileDialog openFileDialog = new OpenFileDialog())
+        //        {
+        //            openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"; // Фильтр для типа файлов
+        //            if (openFileDialog.ShowDialog() == DialogResult.OK) // Если пользователь выбрал файл 
+        //            {
+        //                string text = File.ReadAllText(openFileDialog.FileName); // чтение текста из выбранного файла
+        //                a = text; // загрузка текста в TextEdit
+        //            }
+        //        }
+        //    }
+        //}
 
-        public void SaveHistory(string a)
-        {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt"; // Фильтр для типа файлов
-                if (saveFileDialog.ShowDialog() == DialogResult.OK) // Если пользователь выбрал файл 
-                {
-                    string date = DateTime.Now.ToString("D");
+        //public void SaveHistory(string a)
+        //{
+        //    using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+        //    {
+        //        saveFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt"; // Фильтр для типа файлов
+        //        if (saveFileDialog.ShowDialog() == DialogResult.OK) // Если пользователь выбрал файл 
+        //        {
+        //            string date = DateTime.Now.ToString("D");
 
-                    //string text = a;
-                   // ChatBotHistory.push_front($"История чата от " + date + "\r\n");
-                    ChatBotHistory.Add($"История чата от " + date + "\r\n" + a);
-                    //File.WriteAllText(saveFileDialog.FileName, all); // сохранение текста в файл по выбранному пути
-                    File.WriteAllLines(saveFileDialog.FileName, ChatBotHistory);
-                }
-            }
-        }
+        //            //string text = a;
+        //           // ChatBotHistory.push_front($"История чата от " + date + "\r\n");
+        //            ChatBotHistory.Add($"История чата от " + date + "\r\n" + a);
+        //            //File.WriteAllText(saveFileDialog.FileName, all); // сохранение текста в файл по выбранному пути
+        //            File.WriteAllLines(saveFileDialog.FileName, ChatBotHistory);
+        //        }
+        //    }
+        //}
     }
 
 }

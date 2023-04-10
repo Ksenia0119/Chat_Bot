@@ -46,9 +46,15 @@ namespace ChatBot
             //bot.BotCheckReg(textBox_Question.Text);
 
             //textBox_Answer.Text += bot.Answer(textBox_Question.Text, bot);
-            bot.AddHistory(bot.Answer(textBox_Question.Text, bot));
-            textBox_Answer.Text += bot.Watch(textBox_Answer.Text);
-            
+            ////bot.AddHistory(bot.Answer(textBox_Question.Text, bot));
+            ////textBox_Answer.Text += bot.Watch(textBox_Answer.Text);
+
+            string answer = bot.Answer(textBox_Question.Text, bot);
+            string date = DateTime.Now.ToString("D");
+            bot.ChatBotHistory.Add($"История чата от " + date + "\r\n"+answer); // Добавляем ответ в список chatHistory объекта chat
+
+            textBox_Answer.Text += answer;
+
             //автоскролинг
             textBox_Answer.SelectionStart = textBox_Answer.Text.Length;
             textBox_Answer.ScrollToCaret();
@@ -64,7 +70,24 @@ namespace ChatBot
         ///сохранение чата в фаил
         private void сохранитьИсториюЧатаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bot.SaveHistory(textBox_Answer.Text);
+            //bot.SaveHistory(textBox_Answer.Text);
+
+            
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt"; // Фильтр для типа файлов
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK) // Если пользователь выбрал файл 
+                    {
+                        //string date = DateTime.Now.ToString("D");
+
+                        //string text = a;
+                        // ChatBotHistory.push_front($"История чата от " + date + "\r\n");
+                       // bot.ChatBotHistory.Add($"История чата от " + date + "\r\n" );
+                        //File.WriteAllText(saveFileDialog.FileName, all); // сохранение текста в файл по выбранному пути
+                        File.WriteAllLines(saveFileDialog.FileName, bot.ChatBotHistory);
+                    }
+                }
+            
             //string path = "..ChatBot\\content.txt"; // путь к файлу
             // string text = textBox_Answer.Text; // текст из TextEdit
             //File.WriteAllText(path, text); // сохранение текста в файл
@@ -87,18 +110,18 @@ namespace ChatBot
         private void загрузитьЧатИзФайлаToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            bot.LoadHistory(textBox_Answer.Text);
-            //    {
-            //        using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            //        {
-            //            openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"; // Фильтр для типа файлов
-            //            if (openFileDialog.ShowDialog() == DialogResult.OK) // Если пользователь выбрал файл 
-            //            {
-            //                string text = File.ReadAllText(openFileDialog.FileName); // чтение текста из выбранного файла
-            //                textBox_Answer.Text = text; // загрузка текста в TextEdit
-            //            }
-            //        }
-            //    }
+            // bot.LoadHistory(textBox_Answer.Text);
+            {
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"; // Фильтр для типа файлов
+                    if (openFileDialog.ShowDialog() == DialogResult.OK) // Если пользователь выбрал файл 
+                    {
+                        string text = File.ReadAllText(openFileDialog.FileName); // чтение текста из выбранного файла
+                        textBox_Answer.Text = text; // загрузка текста в TextEdit
+                    }
+                }
+            }
         }
 
 
