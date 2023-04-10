@@ -8,12 +8,16 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
+
 
 namespace ChatBot
 {
     public class Bot
     {
-
+        List<string> ChatBotHistory = new List<string>();
+       //
         ///регулярные выражения..
         public static Regex regexHello = new Regex(@"Ха*й|приве*т|здарова", RegexOptions.IgnoreCase);
         public static Regex regexTime = new Regex(@"время$|час$", RegexOptions.IgnoreCase);
@@ -28,6 +32,21 @@ namespace ChatBot
 
 
         string userName = FormLogin.userName;
+
+        /// Метод добавления строк в список
+        public void AddHistory(string a)
+        {
+            ChatBotHistory.Add(a);
+        }
+        /// Метод вывода строк из списка
+        public string Watch (string a)
+        {
+            foreach (var item in ChatBotHistory)
+            {
+                a = item;
+            }
+            return a;
+        }
 
         ///вывод запросов пользователя и ответов бота 
         public string BotSay(string bot)
@@ -67,16 +86,26 @@ namespace ChatBot
         /// https://upread.ru/art.php?id=84
         public string SiteIP()
         {
+            //WebClient класс предоставляет общие методы для отправки или 
+            //    получения данных из любого локального, интрасети или 
+            //    интернет - ресурса, определяемого универсальным кодом ресурса(URI).
+            // создаем ссылку на объект WebClient
             using (WebClient client = new WebClient())
             {
+                //задается кодировка скачиваемой страницы
                 client.Encoding = System.Text.Encoding.UTF8;
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                //включаем поддержку защищенного протокола(https)
+                //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
+                // получаем данные страницы
                 var htmlData = client.DownloadData(url);
+                // и конвертим их в string, учитывая кодировку
                 string htmlCode = Encoding.UTF8.GetString(htmlData);
-
+                //с помощью регулярных выражений убираем все до вхождения подстроки 
                 var parts1 = Regex.Split(htmlCode, "<div class=ip_block><p>Ваш IP-адрес</p><div class=ip>");
+                //получаем второй элемент массива(сплит по коду пробела)
                 var parts2 = Regex.Split(parts1[1], " ");
+                //заменяем строки по указанному регулярному выражению на пустую строку
                 string numberPosition = (Regex.Replace(parts2[0], @"</div>|<form", ""));
                 return "ваш ip: " + numberPosition;
             }
@@ -128,6 +157,8 @@ namespace ChatBot
                 return bot.UserQuest(b) + "\r"
                                + bot.BotSay(bot.BotInstruction());
             }
+
+
             else
             {
                 return bot.UserQuest(b) + "\r" + "[" + DateTime.Now.ToString("HH:mm") + "] " + "Bot Alex" + ": "
@@ -183,8 +214,43 @@ namespace ChatBot
             return (a - b).ToString();
 
         }
+        public void LoadHistory(string a)
+        {
+            {
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"; // Фильтр для типа файлов
+                    if (openFileDialog.ShowDialog() == DialogResult.OK) // Если пользователь выбрал файл 
+                    {
+                        string text = File.ReadAllText(openFileDialog.FileName); // чтение текста из выбранного файла
+                        a = text; // загрузка текста в TextEdit
+                    }
+                }
+            }
+        }
+
+        public void SaveHistory(string a)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt"; // Фильтр для типа файлов
+                if (saveFileDialog.ShowDialog() == DialogResult.OK) // Если пользователь выбрал файл 
+                {
+                    string date = DateTime.Now.ToString("D");
+
+                    //string text = a;
+                   // ChatBotHistory.push_front($"История чата от " + date + "\r\n");
+                    ChatBotHistory.Add($"История чата от " + date + "\r\n" + a);
+                    //File.WriteAllText(saveFileDialog.FileName, all); // сохранение текста в файл по выбранному пути
+                    File.WriteAllLines(saveFileDialog.FileName, ChatBotHistory);
+                }
+            }
+        }
     }
+
 }
+
+
 
 //Bot bot;
 
