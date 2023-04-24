@@ -28,25 +28,14 @@ namespace ChatBot
         public static Regex regexIP = new Regex(@"ip$|айпи$", RegexOptions.IgnoreCase);
         public static Regex regexInstuction = new Regex("что ты умеешь$|инструкция", RegexOptions.IgnoreCase);
 
+
+        //ссылка,по которой происходит поиск айпим адреса
         string url = "https://hidemy.name/ru/what-is-my-ip/";
 
-
+        //имя пользователя
         string userName = FormLogin.userName;
 
-        /// Метод добавления строк в список
-        //public void AddHistory(string ans)
-        //{
-        //    ChatBotHistory.Add(ans);
-        //}
-        /// Метод вывода строк из списка
-        public string Watch (string a)
-        {
-            foreach (var item in ChatBotHistory)
-            {
-                a = item;
-            }
-            return a;
-        }
+        
 
         ///вывод запросов пользователя и ответов бота 
         public string BotSay(string bot)
@@ -101,67 +90,73 @@ namespace ChatBot
                 var htmlData = client.DownloadData(url);
                 // и конвертим их в string, учитывая кодировку
                 string htmlCode = Encoding.UTF8.GetString(htmlData);
+
                 //с помощью регулярных выражений убираем все до вхождения подстроки 
+
+
+                // type - string[] - массив строк
+                //Split- делит код напополам
                 var parts1 = Regex.Split(htmlCode, "<div class=ip_block><p>Ваш IP-адрес</p><div class=ip>");
                 //получаем второй элемент массива(сплит по коду пробела)
                 var parts2 = Regex.Split(parts1[1], " ");
+
                 //заменяем строки по указанному регулярному выражению на пустую строку
                 string numberPosition = (Regex.Replace(parts2[0], @"</div>|<form", ""));
+                //  @ - заставляет понимать строку без специальных символов, т.е буквально
                 return "ваш ip: " + numberPosition;
             }
         }
 
 
-
         ///проверка запросов для получения ответа
-        public string Answer(string b, Bot bot)
+        public string Answer(string b)
         {
             if (regexHello.IsMatch(b))
             {
-                return bot.UserQuest(b) + "\r"
-                + bot.BotSay(bot.SetHelloBot());
+                return this.UserQuest(b) + "\r"
+                + this.BotSay(this.SetHelloBot());
             }
             if (regexDate.IsMatch(b))
             {
-                return bot.UserQuest(b) + "\r"
-                + bot.BotSay(bot.DateBot());
+                return this.UserQuest(b) + "\r"
+                + this.BotSay(this.DateBot());
             }
             if (regexTime.IsMatch(b))
             {
-                return bot.UserQuest(b) + "\r"
-                + bot.BotSay(bot.TimeBot());
+                return this.UserQuest(b) + "\r"
+                + this.BotSay(this.TimeBot());
             }
             if (regexSum.IsMatch(b))
             {
-                return bot.UserQuest(b) + "\r"
-                + bot.BotSay(bot.BotSum(b));
+                return this.UserQuest(b) + "\r"
+                + this.BotSay(this.BotSum(b));
             }
             if (regexSub.IsMatch(b))
             {
-                return bot.UserQuest(b) + "\r"
-                + bot.BotSay(bot.BotSub(b));
+                return this.UserQuest(b) + "\r"
+                + this.BotSay(this.BotSub(b));
             }
             if(regexHowAreYou.IsMatch(b))
             {
-                return bot.UserQuest(b) + "\r"
-                 + bot.BotSay(bot.SetHowBot());
+                return this.UserQuest(b) + "\r"
+                 + this.BotSay(this.SetHowBot());
             }
            
             if (regexIP.IsMatch(b))
             {
-                return bot.UserQuest(b) + "\r"
-                + bot.BotSay(bot.SiteIP());
+                return this.UserQuest(b) + "\r"
+                + this.BotSay(this.SiteIP());
             }
             if (regexInstuction.IsMatch(b))
             {
-                return bot.UserQuest(b) + "\r"
-                               + bot.BotSay(bot.BotInstruction());
+                return this.UserQuest(b) + "\r"
+                               + this.BotSay(this.BotInstruction());
             }
 
 
             else
             {
-                return bot.UserQuest(b) + "\r" + "[" + DateTime.Now.ToString("HH:mm") + "] " + "Bot Alex" + ": "
+                return this.UserQuest(b) + "\r" + "[" + DateTime.Now.ToString("HH:mm") + "] " + "Bot Alex" + ": "
                     + "К сожалению, я не понимаю, что вы имеете ввиду(((" + "\r" + "\n";
             }
         }
@@ -208,10 +203,10 @@ namespace ChatBot
         {
             quest = quest.Replace(" ", "");
             quest = quest.Substring(quest.LastIndexOf('т') + 2);
-            string[] words = quest.Split(new char[] { 'и' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] words = quest.Split(new char[] { 'и','з' }, StringSplitOptions.RemoveEmptyEntries);
             int a = Convert.ToInt32(words[0]);
             int b = Convert.ToInt32(words[1]);
-            return (a - b).ToString();
+            return (-a + b).ToString();
 
         }
         //public void LoadHistory(string a)

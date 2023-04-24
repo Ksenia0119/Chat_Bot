@@ -49,7 +49,7 @@ namespace ChatBot
             ////bot.AddHistory(bot.Answer(textBox_Question.Text, bot));
             ////textBox_Answer.Text += bot.Watch(textBox_Answer.Text);
 
-            string answer = bot.Answer(textBox_Question.Text, bot);
+            string answer = bot.Answer(textBox_Question.Text);
             string date = DateTime.Now.ToString("D");
             bot.ChatBotHistory.Add($"История чата от " + date + "\r\n"+answer); // Добавляем ответ в список chatHistory объекта chat
 
